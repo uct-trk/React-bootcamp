@@ -4,9 +4,11 @@ import Button from "./components/Button";
 import "./tailwind.css";
 import Tab from "./components/Tab";
 import { useState } from "react";
+import LifeCycle from "./LifeCycle";
 function App() {
   const [activeTab, setActiveTab] = useState(1);
   const todos = ["todo1", "todo2", "todo3"];
+  const [show, setShow] = useState(false);
   /* create element yontemiyle eleman oluşturma
   const h1 = createElement("h1", null, "ugurcan.com");
   const ul = createElement(
@@ -59,6 +61,14 @@ function App() {
           <Tab.Panel title="Ayarlar">3. tab</Tab.Panel>
         </Tab>
       </div>
+
+      <button
+        className="bg-red-500 p-3 rounded text-white"
+        onClick={() => setShow(!show)}
+      >
+        {show ? "Gizle" : "Goster"}
+      </button>
+      {show && <LifeCycle />}
     </>
   );
 }
