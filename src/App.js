@@ -1,11 +1,11 @@
 import "./style.scss";
-import { createElement } from "react";
-
-function Button(props) {
-  return <button>{props.text}</button>;
-}
-
+//import { createElement } from "react";
+import Button from "./components/Button";
+import "./tailwind.css";
+import Tab from "./components/Tab";
+import { useState } from "react";
 function App() {
+  const [activeTab, setActiveTab] = useState(1);
   const todos = ["todo1", "todo2", "todo3"];
   /* create element yontemiyle eleman oluşturma
   const h1 = createElement("h1", null, "ugurcan.com");
@@ -33,7 +33,6 @@ function App() {
   /* JSX */
   return (
     <>
-      <Button text="Merhaba Buton" />
       <main id="main" className="test">
         <h1 style={{ background: "red", color: "white" }}>ugurcan.turk</h1>
         <ul>
@@ -42,11 +41,24 @@ function App() {
           ))}
         </ul>
         <label htmlFor="search">Arama</label>
-        <input type="text" name="search" id="search" />
+        <input className="bg-red-500" type="text" name="search" id="search" />
         <button onClick={showAlert}>alert aç</button>
         <br />
         {name.toUpperCase()}
       </main>
+      <Button variant="success">Buton Ornegi</Button>
+      <Button variant="warning">Buton Ornegi</Button>
+      <Button variant="danger">Buton Ornegi</Button>
+      <Button variant="default">Buton Ornegi</Button>
+
+      <div>
+        <button onClick={() => setActiveTab(2)}>Aktif Tabı Değiştir</button>
+        <Tab activeTab={activeTab} setActiveTab={setActiveTab}>
+          <Tab.Panel title="Profil">1. tab</Tab.Panel>
+          <Tab.Panel title="Hakkında">2. tab</Tab.Panel>
+          <Tab.Panel title="Ayarlar">3. tab</Tab.Panel>
+        </Tab>
+      </div>
     </>
   );
 }
