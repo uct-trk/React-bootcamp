@@ -1,17 +1,18 @@
 import "./style.scss";
 //import { createElement } from "react";
-import Button from "./components/Button";
+/* import Button from "./components/Button"; */
 import "./tailwind.css";
-import Tab from "./components/Tab";
+/* import Tab from "./components/Tab";
 import { useState, useReducer, useCallback, useMemo } from "react";
 import LifeCycle from "./LifeCycle";
 import reducer from "./todoReducer";
 import Memoization from "./Memoization";
 import AddTodo from "./AddTodo";
-import Todos from "./Todos";
+import Todos from "./Todos"; */
+import FormReact from "./FormReact";
 
 function App() {
-  console.log("app rendered");
+  /* console.log("app rendered");
   const [activeTab, setActiveTab] = useState(1);
   const [show, setShow] = useState(false);
 
@@ -20,7 +21,7 @@ function App() {
     todos: [],
     todo: "",
     search: "",
-  });
+  }); */
   /* create element yontemiyle eleman oluşturma
   const h1 = createElement("h1", null, "ugurcan.com");
   const ul = createElement(
@@ -46,7 +47,7 @@ function App() {
 
   /*Eğer bir componente methodu prop olarak geçiyorsak useCallback ile sarmalıyoruz gereksiz renderlerlamayı önlüyor*/
 
-  const submitHandle = useCallback(
+  /* const submitHandle = useCallback(
     (e) => {
       e.preventDefault();
       dispatch({
@@ -79,12 +80,13 @@ function App() {
           .includes(state.search.toLocaleLowerCase("TR"))
       ),
     [state.todos, state.search]
-  );
+  ); */
 
   /* JSX */
   return (
-    <>
-      <h3>{count}</h3>
+    <div>
+      <FormReact />
+      {/*   <h3>{count}</h3>
       <button onClick={() => setCount(count + 1)}>Artır</button>
       <hr />
       <Memoization />
@@ -100,7 +102,7 @@ function App() {
         submitHandle={submitHandle}
         todo={state.todo}
       />
-      <Todos todos={filteredTodos} />
+      <Todos todos={filteredTodos} /> */}
       {/* <main id="main" className="test">
         <h1 style={{ background: "red", color: "white" }}>ugurcan.turk</h1>
 
@@ -131,7 +133,7 @@ function App() {
         {show ? "Gizle" : "Goster"}
       </button>
       {show && <LifeCycle />} */}
-    </>
+    </div>
   );
 }
 
