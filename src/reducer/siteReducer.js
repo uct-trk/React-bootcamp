@@ -1,7 +1,7 @@
 export default function reducer(state, action) {
     switch (action.type) {
         case "UPDATE_LANG":
-            const language = state.language === "tr" ? "en" : "en"
+            const language = state.language === "tr" ? "en" : "tr"
             localStorage.setItem('language', language)
             return {
                 ...state,
