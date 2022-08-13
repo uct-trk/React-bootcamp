@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App3 from './App3';
+import App4 from './App4';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App3 />
+  <BrowserRouter>
+  <App4 />
+  </BrowserRouter>
 );
 
 
