@@ -1,11 +1,24 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, useFormikContext } from "formik";
 import Input from "../components/form/input";
 import File from "../components/form/file";
 import Checkbox from "../components/form/checkbox";
 import Textarea from "../components/form/textarea";
 import Select from "../components/form/select";
 import Radio from "../components/form/radio";
+import { useEffect } from "react";
+import { SampleSchema, ContactSchema } from "../validations";
+
+const AutoSubmitCode = () => {
+  // Grab values and submitForm from context
+  const { values, submitForm } = useFormikContext();
+  useEffect(() => {
+    if (values.code.length === 6) {
+      submitForm();
+    }
+  }, [values, submitForm]);
+  return null;
+};
 
 function Contact() {
   return (
@@ -14,16 +27,36 @@ function Contact() {
 
       <Formik
         initialValues={{
+          code: "",
+        }}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+        validationSchema={SampleSchema}
+      >
+        {({ values }) => (
+          <Form className="hidden">
+            <Input label="Kodu giriniz" name="code" />
+            <button type="submit">Gönder</button>
+            <AutoSubmitCode />
+          </Form>
+        )}
+      </Formik>
+
+      <Formik
+        initialValues={{
           name: "",
           about: "",
           accept: false,
-          skils: ["php", "css"],
+          skils: [],
           gender: 2,
+          avatar: "",
           level: "sr",
         }}
         onSubmit={(values) => {
           console.log(values);
         }}
+        validationSchema={ContactSchema}
       >
         {({ values }) => (
           <Form className="p-6 m-4 shadow-lg grid gap-y-4 border rounded">
@@ -33,8 +66,8 @@ function Contact() {
             <Select
               label="Cinsiyet"
               name="gender"
-              original={true}
               options={[
+                { key: "", value: "Seçin" },
                 { key: 1, value: "Kadın" },
                 { key: 2, value: "Erkek" },
               ]}
@@ -58,7 +91,7 @@ function Contact() {
             />
             <button
               className="h-10 rounded bg-black text-sm text-white"
-              disabled={!values.accept}
+              /*  disabled={!values.accept} */
               type="submit"
             >
               Gönder
